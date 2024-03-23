@@ -27,7 +27,18 @@ def on_key_press(event):
     if key in "0123456789+-*/.":
         entry.insert(tk.END, key)
     elif key == "\r":
-        on_button_click(tk.Event())
+        on_enter_pressed()
+
+def on_enter_pressed():
+    try:
+        result = eval(entry.get())
+        # Round the result to 10 decimal places
+        result = round(result, 10)
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, result)
+    except Exception as e:
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, "Error")
 
 root = tk.Tk()
 root.title("Calculator")

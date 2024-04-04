@@ -6,8 +6,8 @@ def on_button_click(event):
     if text == "=":
         try:
             result = eval(entry.get())
-            # Round the result to 10 decimal places
-            result = round(result, 10)
+            # Round the result to 13 decimal places
+            result = round(result, 13)
             entry.delete(0, tk.END)
             entry.insert(tk.END, result)
         except Exception as e:
@@ -28,6 +28,10 @@ def on_key_press(event):
         entry.insert(tk.END, key)
     elif key == "\r":
         on_enter_pressed()
+    elif key == "\b":
+        current_text = entry.get()
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, current_text[:-1])
 
 def on_enter_pressed():
     try:
